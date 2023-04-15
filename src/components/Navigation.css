@@ -1,0 +1,47 @@
+.navigation {
+    position: fixed;
+    bottom: 0;
+
+}
+
+.navigation-plus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.button-icon {
+    background-color: #FFFFFF;
+    border: none;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.button-plus-inner {
+    border: none;
+    background-color: #594FDD;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-plus-outer {
+    border-radius: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: visible;
+    padding-bottom: 5px;
+}
