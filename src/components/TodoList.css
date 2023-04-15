@@ -1,0 +1,55 @@
+.new-task input,
+.task {
+	width: calc(100% - 2rem);
+	background-color: white;
+	padding: 0.75rem;
+	box-sizing: border-box;
+	margin: 1rem;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+	border-right: 8px solid #bdb9f3;
+	font-size: 1.5rem;
+	font-family: "Noto Sans", sans-serif;
+	outline: none;
+	border-top: none;
+	border-left: none;
+	border-bottom: none;
+	border-radius: 10px 0 0 10px;
+}
+
+.new-task {
+	position: relative;
+}
+
+.new-task input::placeholder {
+	color: #c2c2c2;
+}
+
+.new-task button {
+	position: absolute;
+	top: 25%;
+	right: 2rem;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background-color: #bdb9f3;
+	padding: 0.5rem;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+}
+
+.task {
+	font-size: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.task div {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.task-icon {
+    font-size: 1.5rem;
+	color: #bdb9f3;
+}

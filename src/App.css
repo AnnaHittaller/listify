@@ -6,4 +6,6 @@
   min-height: 100vh;
   max-width: 400px;
   font-family: 'Noto Sans', sans-serif;
+  box-sizing: border-box;
 }
+
