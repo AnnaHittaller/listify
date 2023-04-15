@@ -10,7 +10,7 @@ export const generateDate = (
 	const arrayOfDate = [];
 
 	//create prefix date
-	for (let i = 0; i < firstDateOfMonth.day() - 1; i++) {
+	for (let i = 1; i < firstDateOfMonth.day() ; i++) {
 		arrayOfDate.push({ date: firstDateOfMonth.day(i), currentMonth: false });
 	}
 
@@ -43,3 +43,18 @@ export const generateDate = (
 export function ClassNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
+
+export const months = [
+	"January",
+	"February",
+	"March", 
+	"April", 
+	"May",
+	"June",
+	"July", 
+	"August", 
+	"September", 
+	"October", 
+	"November", 
+	"December"
+]

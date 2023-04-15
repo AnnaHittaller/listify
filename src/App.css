@@ -5,8 +5,8 @@
   background-color: #efeefc;
   min-height: 100vh;
   max-width: 400px;
-  padding: 1rem;
   font-family: 'Noto Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 
