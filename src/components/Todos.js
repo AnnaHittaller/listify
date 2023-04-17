@@ -1,46 +1,94 @@
 import "./TodoList.css";
-import { FiCircle, FiCheckCircle, FiXCircle, FiX } from "react-icons/fi";
+
+import {
+	FiCircle,
+	FiCheckCircle,
+	FiXCircle,
+	FiX,
+	FiEdit,
+} from "react-icons/fi";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useEffect } from "react";
 
-function Todos(props) {
-    console.log(props.todos)
+function Todos({ todos, setTodos, setEditTodo }) {
 
-    const handleDelete = (item) => {
-			const index = props.todos.indexOf(item);
-			if (index !== -1) {
-				const updatedTodos = [...props.todos];
-				updatedTodos.splice(index, 1);
-				props.setTodos(updatedTodos);
-			}
-		};
+	const handleDelete = ({ id }) => {
+		setTodos(todos.filter((item) => item.id !== id));
+	};
 
-		
-		useEffect(() => {
-			localStorage.setItem('todos', JSON.stringify(props.todos))
-		}, [props.todos])
-		
-		useEffect(() => {
-			const storedTodos = JSON.parse(localStorage.getItem("todos"));
-			if (storedTodos) {
-				props.setTodos(storedTodos);
-			}
-		}, []);
+	const handleComplete = (item) => {
+		setTodos(
+			todos.map((todo) => {
+				if (item.id === todo.id) {
+					return { ...todo, completed: !todo.completed };
+				}
+				return todo;
+			})
+		);
+	};
 
+	const handleEdit = ({ id }) => {
+		const findTodo = todos.find((item) => item.id === id);
+		setEditTodo(findTodo);
+	};
+
+	const handleImportant = (item) => {
+		setTodos(
+			todos.map((todo) => {
+				if (item.id === todo.id) {
+					return { ...todo, important: !todo.important };
+				} 
+				return todo;
+				
+			})
+		);
+	};
+
+	useEffect(() => {
+		const storedTodos = JSON.parse(localStorage.getItem("todos"));
+		if (storedTodos) {
+			setTodos(storedTodos);
+		}
+	}, []);
 
 	return (
-		<div>
-			{props.todos.map((item) => (
-				<div className="task" key={item.id}>
-                    <div>
-					<FiCircle className="task-icon" />
-					{item.text}
-                    </div>
-                    <div>
-					<AiOutlineStar className="task-icon" />
-					<FiXCircle className="task-icon" onClick={()=>handleDelete(item)}/>
-                    </div>
-				</div>
+		<div className="todolist">
+			{todos.map((item) => (
+				<li className="task" key={item.id}>
+					<div>
+						<button
+							className="task-icon-btn"
+							onClick={() => handleComplete(item)}>
+							{item.completed ? (
+								<FiCheckCircle className="task-icon" />
+							) : (
+								<FiCircle className="task-icon" />
+							)}
+						</button>
+						<input
+							className={item.completed ? "list-input-completed" : "list-input"}
+							type="text"
+							value={item.text}
+							onChange={(e) => e.preventDefault}
+						/>
+					</div>
+					<div>
+						<FiEdit className="task-icon" onClick={() => handleEdit(item)} />
+						<button
+							className="task-icon-btn"
+							onClick={() => handleImportant(item)}>
+							{item.important ? (
+								<AiFillStar className="task-icon" />
+							) : (
+								<AiOutlineStar className="task-icon" />
+							)}
+						</button>
+						<FiXCircle
+							className="task-icon"
+							onClick={() => handleDelete(item)}
+						/>
+					</div>
+				</li>
 			))}
 		</div>
 	);
