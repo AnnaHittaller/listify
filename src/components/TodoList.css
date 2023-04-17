@@ -7,7 +7,7 @@
 	margin: 1rem;
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
 	border-right: 8px solid #bdb9f3;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	font-family: "Noto Sans", sans-serif;
 	outline: none;
 	border-top: none;
@@ -18,6 +18,7 @@
 
 .new-task {
 	position: relative;
+	display: flex;
 }
 
 .new-task input::placeholder {
@@ -26,15 +27,15 @@
 
 .new-task button {
 	position: absolute;
-	top: 25%;
+	align-self: center;
 	right: 2rem;
 	color: white;
 	border: none;
 	border-radius: 5px;
 	background-color: #bdb9f3;
 	padding: 0.5rem;
-	font-size: 1.5rem;
-	line-height: 1.5rem;
+	font-size: 1rem;
+	line-height: 1rem;
 }
 
 .task {
@@ -52,4 +53,29 @@
 .task-icon {
     font-size: 1.5rem;
 	color: #bdb9f3;
+}
+
+.task-icon-btn {
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	display: flex;
+	align-items: center;
+}
+
+.list-input {
+	font-size: 1rem;
+	font-family: "Noto Sans", sans-serif;
+	outline: none;
+	border: none;
+}
+
+.list-input-completed {
+	font-size: 1rem;
+	font-family: "Noto Sans", sans-serif;
+	outline: none;
+	border: none;
+	color:#c2c2c2;
+	text-decoration: line-through;
 }

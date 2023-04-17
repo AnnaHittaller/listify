@@ -1,26 +1,25 @@
 .calendar-wrapper {
 	position: relative;
 	top: 2rem;
-	margin: 0 1rem 2rem 1rem; 
+	margin: 0 1rem 2rem 1rem;
 	background-color: white;
 	/* width: 400px; */
 	border-radius: 10px;
-	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .15);
-	
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .today-div {
 	width: 40%;
 	border: 2px solid #594fdd;
 	border-radius: 10px;
-	margin: 1rem auto 0;
-	padding: .25rem .5rem;
+	margin: -1rem auto 0;
+	padding: 0.25rem 0.5rem;
 	color: white;
 	font-weight: semibold;
 	position: relative;
 	top: -15px;
 	background-color: #bdb9f3;
-	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .15);
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
 	cursor: pointer;
 }
 
@@ -86,19 +85,18 @@
 	cursor: pointer;
 }
 
-.allDays:hover, .selected {
+.allDays:hover,
+.selected {
 	background-color: #bdb9f3;
 	color: white;
 	transition: all 0.3s;
 }
 
-
 .calendar-grid div:nth-child(7n) p.currentMonth {
-    color: #bdb9f3;
+	color: #bdb9f3;
 }
 
 .calendar-grid div:nth-child(7n) p.currentMonth:hover {
-    color: white;
+	color: white;
 	background-color: #bdb9f3;
 }
-
