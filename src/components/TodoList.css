@@ -1,4 +1,4 @@
-.new-task input,
+
 .task {
 	width: calc(100% - 2rem);
 	background-color: white;
@@ -6,7 +6,7 @@
 	box-sizing: border-box;
 	margin: 1rem;
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-	border-right: 8px solid #bdb9f3;
+	/* border-right: 8px solid #bdb9f3; */
 	font-size: 1rem;
 	font-family: "Noto Sans", sans-serif;
 	outline: none;
@@ -16,9 +16,97 @@
 	border-radius: 10px 0 0 10px;
 }
 
+.personal {
+	border-right: 8px solid #a0ced9;
+}
+
+.general {
+	border-right: 8px solid #ffee93;
+}
+
+.work {
+	border-right: 8px solid #ffc09f;
+}
+
+.new-task input:nth-of-type(1) {
+	width: calc(100% - 2rem);
+	padding: 0.75rem;
+	box-sizing: border-box;
+	align-self: center;
+	font-family: "Noto Sans", sans-serif;
+	outline: none;
+	font-size: 1rem;
+	border: 2px solid #bdb9f3;
+	border-radius: 10px;
+	margin: 1rem 0;
+
+}
+
+.new-task input[type="radio"] {
+background-color: red;
+border: 1px solid blue;
+width: unset;
+}
+
+.radio-group {
+	display: flex;
+	flex-direction: column;
+	color: #464646;
+	margin: 0 1rem 1rem 1rem;
+	font-size: 1rem;
+}
+
+.radio-group div {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.radio-group div label:nth-of-type(1) {
+	border: 2px solid #ffee93;
+}
+
+.radio-group div label:nth-of-type(2) {
+	border: 2px solid #a0ced9;
+}
+
+.radio-group div label:nth-of-type(3) {
+	border: 2px solid #ffc09f;
+}
+
+
+.radio-group label {
+	width: 30%;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	margin: 0 auto;
+	justify-content: center;
+	gap: .25rem;
+	border-radius: 10px;
+	background-color: transparent;
+	padding: 0 .5rem;
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
 .new-task {
 	position: relative;
 	display: flex;
+	flex-direction: column;
+	width: calc(100% - 2rem);
+	background-color: white;
+	justify-content: center;
+	margin: 0 auto;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+	border-right: 8px solid #bdb9f3;
+	font-size: 1rem;
+	font-family: "Noto Sans", sans-serif;
+	outline: none;
+	border-top: none;
+	border-left: none;
+	border-bottom: none;
+	border-radius: 10px 0 0 10px;
+
 }
 
 .new-task input::placeholder {
@@ -26,16 +114,22 @@
 }
 
 .new-task button {
-	position: absolute;
+	position: relative;
 	align-self: center;
-	right: 2rem;
+	margin: 1rem auto;
 	color: white;
 	border: none;
 	border-radius: 5px;
 	background-color: #bdb9f3;
-	padding: 0.5rem;
+	padding: 0.75rem;
 	font-size: 1rem;
 	line-height: 1rem;
+}
+
+.new-task button span {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
 }
 
 .task {
@@ -78,4 +172,28 @@
 	border: none;
 	color:#c2c2c2;
 	text-decoration: line-through;
+}
+
+.todolist p{
+	width: calc(100% - 4rem);
+	text-align: center;
+	margin: 0 auto;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	background-color: #bdb9f3;
+	padding: 1rem;
+	font-size: 1.25rem;
+	line-height: 1rem;
+}
+
+.radio-group p {
+	text-align: center;
+	margin: 0 auto 1rem;
+	font-weight: 600;
+	color: #594fdd;
+	background-color: transparent;
+	padding: .5rem;
+	font-size: 1rem;
+	line-height: 1rem;
 }
