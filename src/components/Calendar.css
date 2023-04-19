@@ -96,7 +96,7 @@
 	color: #bdb9f3;
 }
 
-.calendar-grid div:nth-child(7n) p.currentMonth:hover {
+.calendar-grid div:nth-child(7n) p.currentMonth:hover,.calendar-grid div:nth-child(7n) p.currentMonth.selected {
 	color: white;
 	background-color: #bdb9f3;
 }

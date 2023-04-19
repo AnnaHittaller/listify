@@ -1,4 +1,5 @@
 import "./App.css";
+import dayjs from "dayjs";
 import Calendar from "./components/Calendar";
 import { useState, useEffect } from "react";
 import TodoList from "./components/TodoList";
@@ -12,11 +13,20 @@ function App() {
 	const [newTodo, setNewTodo] = useState("");
 	const [todos, setTodos] = useState(storedTodos);
 	const [editTodo, setEditTodo] = useState(null);
+	const currentDate = dayjs();
+	const [selectDate, setSelectDate] = useState(currentDate);
+	const [category, setCategory] = useState("general");
+	console.log(selectDate.format("MM. DD. YYYY"));
+
+	const categories = [
+		{ label: "General", value: "general" },
+		{ label: "Personal", value: "personal" },
+		{ label: "Work", value: "work" },
+	];
 
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
-
 
 	return (
 		<BrowserRouter>
@@ -24,24 +34,43 @@ function App() {
 				<div className="app-wrapper">
 					<Header />
 					<Routes>
-						<Route path='/calendar' element={<Calendar />} />
-						<Route path='/todolist' element={
-							<TodoList
-								newTodo={newTodo}
-								setNewTodo={setNewTodo}
-								todos={todos}
-								setTodos={setTodos}
-								editTodo={editTodo}
-								setEditTodo={setEditTodo}
-							/>
-						}/>
-						<Route path='/todos' element={
-							<Todos
-								todos={todos}
-								setTodos={setTodos}
-								setEditTodo={setEditTodo}
-							/>
-						}/>
+						<Route
+							path="/calendar"
+							element={
+								<Calendar
+									selectDate={selectDate}
+									setSelectDate={setSelectDate}
+									currentDate={currentDate}
+								/>
+							}
+						/>
+						<Route
+							path="/todolist"
+							element={
+								<TodoList
+									newTodo={newTodo}
+									setNewTodo={setNewTodo}
+									todos={todos}
+									setTodos={setTodos}
+									editTodo={editTodo}
+									setEditTodo={setEditTodo}
+									category={category}
+									setCategory={setCategory}
+									categories={categories}
+								/>
+							}
+						/>
+						<Route
+							path="/todos"
+							element={
+								<Todos
+									todos={todos}
+									setTodos={setTodos}
+									setEditTodo={setEditTodo}
+									category={category}
+								/>
+							}
+						/>
 					</Routes>
 					<Navigation />
 				</div>

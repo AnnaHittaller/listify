@@ -7,13 +7,13 @@ import './Calendar.css';
 import dayjs from "dayjs";
 import { useState } from "react";
 
-function Calendar() {
+function Calendar({selectDate, setSelectDate, currentDate}) {
     
   const days = ["M", "T", "W", "T", "F", "Sa", "Su"];
-  const currentDate = dayjs();
+  //const currentDate = dayjs();
   const [today, setToday] = useState(currentDate)
   const [thisDate, setThisDate] = useState(dayjs()) //this is needed just for showing today's date, always unchanged, on the top of the calendar
-  const [selectDate, setSelectDate] = useState(currentDate)
+  //const [selectDate, setSelectDate] = useState(currentDate)
  
     return (
 			<div className="calendar-wrapper">
