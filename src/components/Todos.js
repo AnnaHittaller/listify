@@ -18,20 +18,26 @@ function Todos({ todos, setTodos, setEditTodo, category }) {
 	};
 
 	const handleComplete = (item) => {
-		setTodos(
-			todos.map((todo) => {
+		
+		setTodos((prevTodos) => {
+			const updatedTodos = prevTodos.map((todo) => {
 				if (item.id === todo.id) {
 					return { ...todo, completed: !todo.completed };
 				}
 				return todo;
-			})
-		);
+			});
+			const completedTodos = updatedTodos.filter((todo) => todo.completed);
+			const incompleteTodos = updatedTodos.filter((todo) => !todo.completed);
+			return [...incompleteTodos, ...completedTodos];
+		});
+		localStorage.setItem("todos", JSON.stringify(todos));
+			
 	};
 
 	const handleEdit = ({ id }) => {
 		const findTodo = todos.find((item) => item.id === id);
 		setEditTodo(findTodo);
-		navigate('/Todolist')
+		navigate("/Todolist");
 	};
 
 	const handleImportant = (item) => {

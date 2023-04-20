@@ -7,6 +7,7 @@ import Todos from "./components/Todos";
 import { Header } from "./components/Header";
 import { Navigation } from "./components/Navigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddTodoLayout from "./layouts/AddTodoLayout";
 
 function App() {
 	const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -60,6 +61,24 @@ function App() {
 								/>
 							}
 						/>
+						{/* <Route element={<AddTodoLayout />}>
+							<Route
+								path="/todolist"
+								element={
+									<TodoList
+										newTodo={newTodo}
+										setNewTodo={setNewTodo}
+										todos={todos}
+										setTodos={setTodos}
+										editTodo={editTodo}
+										setEditTodo={setEditTodo}
+										category={category}
+										setCategory={setCategory}
+										categories={categories}
+									/>
+								}
+							/>
+						</Route> */}
 						<Route
 							path="/todos"
 							element={
