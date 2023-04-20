@@ -4,7 +4,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 import "./TodoList.css";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import Calendar from "./Calendar";
+//import Calendar from "./Calendar";
 
 function TodoList({
 	newTodo,
@@ -17,13 +17,13 @@ function TodoList({
 	setCategory,
 	categories,
 }) {
-	const [isClicked, setIsClicked] = useState(false);
+	//const [isClicked, setIsClicked] = useState(false);
 
 	const navigate = useNavigate()
 
-	const toggleIsClicked = () => {
-		setIsClicked((prev) => !prev);
-	};
+	// const toggleIsClicked = () => {
+	// 	setIsClicked((prev) => !prev);
+	// };
 
 	const updateTodo = (text, id, completed, important, category) => {
 		const newInput = todos.map((item) => {
@@ -43,6 +43,8 @@ function TodoList({
 			setNewTodo("");
 		}
 	}, [setNewTodo, editTodo]);
+
+
 
 	const handleChange = (e) => {
 		setNewTodo(e.target.value);
@@ -69,14 +71,25 @@ function TodoList({
 				navigate(-1)
 			}
 		} else {
-			updateTodo(
-				newTodo,
-				editTodo.id,
-				editTodo.completed,
-				editTodo.important,
-				editTodo.category
-			);
+		 if (editTodo.category !== category) {
+      updateTodo(
+        newTodo,
+        editTodo.id,
+        editTodo.completed,
+        editTodo.important,
+        category
+      );
+	  
+    } else {
+      updateTodo(
+        newTodo,
+        editTodo.id,
+        editTodo.completed,
+        editTodo.important,
+        editTodo.category
+      );
 		}
+	}
 	};
 
 	return (
@@ -92,12 +105,14 @@ function TodoList({
 				<div className="radio-group">
 					<p>Choose a category:</p>
 					<div>
-						{categories.map((cat) => (
-							<label key={cat.value}>
+						{categories.map((cat, index) => (
+							<label key={index}>
 								<input
 									type="radio"
 									value={cat.value}
-									checked={category === cat.value}
+									checked={
+										editTodo && editTodo.category && category === cat.value
+									}
 									onChange={() => setCategory(cat.value)}
 								/>
 								{cat.label}:
@@ -107,7 +122,10 @@ function TodoList({
 				</div>
 				<button type="submit">
 					{editTodo ? (
-						<BsCheckLg />
+						<span>
+							<BsCheckLg />
+							<span>Save todo</span>
+						</span>
 					) : (
 						<span>
 							<GoPlus />
