@@ -9,6 +9,10 @@ import {
 } from "react-icons/fi";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import { SlStar, SlBan, SlCalender } from "react-icons/sl";
+import SearchTest from "./Searchbar"
+import { BiBriefcase, BiHomeHeart, BiGlobe } from "react-icons/bi" 
+import { TbListCheck } from "react-icons/tb";
 
 function Todos({ todos, setTodos, setEditTodo, category }) {
 	const navigate = useNavigate();
@@ -60,7 +64,10 @@ function Todos({ todos, setTodos, setEditTodo, category }) {
 
 		const [activeFilter, setActiveFilter] = useState("all");
 
-		const getFilteredTodos = () => {
+		const [query, setQuery] = useState("");
+		console.log(query)
+
+		const getFilteredTodos = (query) => {
 			switch (activeFilter) {
 				case "incomplete":
 					return todos.filter((todo) => !todo.completed);
@@ -68,6 +75,19 @@ function Todos({ todos, setTodos, setEditTodo, category }) {
 				case "important":
 					return todos.filter((todo) => todo.important);
 					break;
+				case "personal":
+					return todos.filter((todo) => todo.category === "personal");
+					break;
+				case "work":
+						return todos.filter((todo) => todo.category === "work");
+						break;
+				case "general":
+							return todos.filter((todo) => todo.category === "general");
+							break;
+				// case "search":
+				// 		return todos.filter((todo)=> todo.text.includes(query));
+				// 		break;
+				
 				default:
 					return todos;
 			}
@@ -81,33 +101,80 @@ function Todos({ todos, setTodos, setEditTodo, category }) {
 		};
 
 
+		const showAllTasks = () => {
+			const allTodos = todos.length;
+			return allTodos;
+		};
+
+
+		const showDoneTasks = () => {
+			const completedTodos = todos.filter((todo) => todo.completed).length;
+			return completedTodos;
+		};
+
+
+		// const showYellowTasks = () => {
+		// 	const YellowTasks = {cat.label},
+		// 	return YellowTasks;
+		// };
+
+		
+
+		
+
+
 	return (
+		<div>
+		    {/* <div id="searchbarDiv">
+        <input type="text" placeholder="search" value={query} onChange={(e)=> setQuery(e.target.value)} /> 
+		<button onClick={()=> setQuery("search")}>search</button>
+    	</div> */}
 		<div className="todolist">
 			<div className="progress-bar">
-				My Todos
+				<p id="ToDoText">To Do's</p>
+				<p class="allTasks">Tasks All: <strong>{showAllTasks()}</strong></p>
+				<p class="doneTasks">Done Tasks: <strong>{showDoneTasks()}</strong></p>
 				<div className="outer-bar">
 					<div
 						className="inner-bar"
 						style={{ width: `${progressBar()}%` }}></div>
 				</div>
 			</div>
+			</div>
+
 			<div className="filter-div">
 				<button className="filter-btn" onClick={() => setActiveFilter("all")}>
-					Show all
+				<TbListCheck />
 				</button>
-				<button
+				{/* <button
 					className="filter-btn"
 					onClick={() => setActiveFilter("incomplete")}>
-					Show incomplete
-				</button>
+					<SlBan />
+				</button> */}
 				<button
 					className="filter-btn"
 					onClick={() => setActiveFilter("important")}>
-					Show important
+					<SlStar />
+				</button>
+				<button
+					className="filter-btn"
+					onClick={() => setActiveFilter("work")}>
+					<BiBriefcase />
+				</button>
+				<button
+					className="filter-btn"
+					onClick={() => setActiveFilter("personal")}>
+					<BiHomeHeart />
+				</button>
+				<button
+					className="filter-btn"
+					onClick={() => setActiveFilter("general")}>
+					<BiGlobe />
 				</button>
 			</div>
+
 			{todos.length === 0 ? (
-				<p>No todos added yet</p>
+				<p id="todolist-p">No todos added yet</p>
 			) : (
 				getFilteredTodos().map((item) => (
 					<li className={`task ${item.category}`} key={item.id}>

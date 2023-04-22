@@ -74,6 +74,7 @@ function TodoList({
 				navigate(-1)
 			}
 		} else {
+
 			// if (editTodo.category !== category) {
 			updateTodo(
 				editTodo.id,
