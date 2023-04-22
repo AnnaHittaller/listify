@@ -1,6 +1,5 @@
 import "./TodoList.css";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-
 import {
 	FiCircle,
 	FiCheckCircle,
@@ -9,7 +8,7 @@ import {
 	FiEdit,
 } from "react-icons/fi";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Todos({ todos, setTodos, setEditTodo, category }) {
 	const navigate = useNavigate();
@@ -59,14 +58,58 @@ function Todos({ todos, setTodos, setEditTodo, category }) {
 		}
 	}, []);
 
+		const [activeFilter, setActiveFilter] = useState("all");
+
+		const getFilteredTodos = () => {
+			switch (activeFilter) {
+				case "incomplete":
+					return todos.filter((todo) => !todo.completed);
+					break;
+				case "important":
+					return todos.filter((todo) => todo.important);
+					break;
+				default:
+					return todos;
+			}
+		};
+
+		const progressBar = () => {
+			const allTodos = todos.length;
+			const completedTodos = todos.filter((todo) => todo.completed).length;
+			const todoPercent = 100 / (allTodos / completedTodos);
+			return todoPercent;
+		};
 
 
 	return (
 		<div className="todolist">
+			<div className="progress-bar">
+				My Todos
+				<div className="outer-bar">
+					<div
+						className="inner-bar"
+						style={{ width: `${progressBar()}%` }}></div>
+				</div>
+			</div>
+			<div className="filter-div">
+				<button className="filter-btn" onClick={() => setActiveFilter("all")}>
+					Show all
+				</button>
+				<button
+					className="filter-btn"
+					onClick={() => setActiveFilter("incomplete")}>
+					Show incomplete
+				</button>
+				<button
+					className="filter-btn"
+					onClick={() => setActiveFilter("important")}>
+					Show important
+				</button>
+			</div>
 			{todos.length === 0 ? (
 				<p>No todos added yet</p>
 			) : (
-				todos.map((item) => (
+				getFilteredTodos().map((item) => (
 					<li className={`task ${item.category}`} key={item.id}>
 						<div>
 							<button
