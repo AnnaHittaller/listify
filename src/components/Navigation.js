@@ -12,7 +12,7 @@ export function Navigation() {
     return (
 			<div className="navigation">
 				<div>
-					<NavLink to="/todos" activeClassName="active">
+					<NavLink to="/" activeClassName="active">
 						<button className="button-icon">{<TbListCheck />}</button>
 					</NavLink>
 					<NavLink to="/calendar" activeClassName="active">

@@ -65,26 +65,8 @@ function App() {
 								/>
 							}
 						/>
-						{/* <Route element={<AddTodoLayout />}>
-							<Route
-								path="/todolist"
-								element={
-									<TodoList
-										newTodo={newTodo}
-										setNewTodo={setNewTodo}
-										todos={todos}
-										setTodos={setTodos}
-										editTodo={editTodo}
-										setEditTodo={setEditTodo}
-										category={category}
-										setCategory={setCategory}
-										categories={categories}
-									/>
-								}
-							/>
-						</Route> */}
 						<Route
-							path="/todos"
+							path="/"
 							element={
 								<Todos
 									todos={todos}
