@@ -26,10 +26,10 @@ function TodoList({
 	// 	setIsClicked((prev) => !prev);
 	// };
 
-	const updateTodo = (text, id, completed, important, category) => {
+	const updateTodo = (id, text, completed, important, category, date) => {
 		const newInput = todos.map((item) => {
 			return item.id === id
-				? { text, id, completed, important, category }
+				? { id, text, completed, important, category, date }
 				: item;
 		});
 		setTodos(newInput);
@@ -75,18 +75,18 @@ function TodoList({
 		} else {
 		 if (editTodo.category !== category) {
       updateTodo(
-        newTodo,
         editTodo.id,
+		newTodo,
         editTodo.completed,
         editTodo.important,
-		editTodo.date,
-        category
+		category,
+		editTodo.date
       );
 	  
     } else {
       updateTodo(
-        newTodo,
         editTodo.id,
+		newTodo,
         editTodo.completed,
         editTodo.important,
         editTodo.category, 
