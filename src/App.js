@@ -3,11 +3,15 @@ import dayjs from "dayjs";
 import Calendar from "./components/Calendar";
 import { useState, useEffect } from "react";
 import TodoList from "./components/TodoList";
+import "./components/TodoList.css";
 import Todos from "./components/Todos";
 import { Header } from "./components/Header";
 import { Navigation } from "./components/Navigation";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddTodoLayout from "./layouts/AddTodoLayout";
+import { BiBriefcase } from "react-icons/bi"
+import { BiHomeHeart } from "react-icons/bi"
+import { BiGlobe } from "react-icons/bi"
 
 function App() {
 	const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -20,9 +24,9 @@ function App() {
 	console.log(selectDate.format("MM. DD. YYYY"));
 
 	const categories = [
-		{ label: "General", value: "general" },
-		{ label: "Personal", value: "personal" },
-		{ label: "Work", value: "work" },
+		{ label: "General", value: "general", icon: < BiGlobe />, backgroundColor: "#ffee93" },
+		{ label: "Personal", value: "personal", icon: < BiHomeHeart />, backgroundColor: "#a0ced9" },
+		{ label: "Work", value: "work", icon: < BiBriefcase />, backgroundColor: "#ffc09f" },
 	];
 
 	useEffect(() => {

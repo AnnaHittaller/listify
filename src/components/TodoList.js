@@ -4,6 +4,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 import "./TodoList.css";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 //import Calendar from "./Calendar";
 
 function TodoList({
@@ -25,10 +26,10 @@ function TodoList({
 	// 	setIsClicked((prev) => !prev);
 	// };
 
-	const updateTodo = (text, id, completed, important, category) => {
+	const updateTodo = (id, text, completed, important, category, date) => {
 		const newInput = todos.map((item) => {
 			return item.id === id
-				? { text, id, completed, important, category }
+				? { id, text, completed, important, category, date }
 				: item;
 		});
 		setTodos(newInput);
@@ -63,6 +64,7 @@ function TodoList({
 							completed: false,
 							important: false,
 							category: category,
+							date: dayjs().format("MM. DD. YYYY"),
 						},
 					]);
 				}
@@ -71,26 +73,34 @@ function TodoList({
 				navigate(-1)
 			}
 		} else {
-		 if (editTodo.category !== category) {
-      updateTodo(
-        newTodo,
-        editTodo.id,
-        editTodo.completed,
-        editTodo.important,
-        category
-      );
-	  
-    } else {
-      updateTodo(
-        newTodo,
-        editTodo.id,
-        editTodo.completed,
-        editTodo.important,
-        editTodo.category
-      );
+			// if (editTodo.category !== category) {
+			updateTodo(
+				editTodo.id,
+				newTodo,
+				editTodo.completed,
+				editTodo.important,
+				category,
+				editTodo.date
+			);
+			// } else {
+			// 	updateTodo(
+			// 		editTodo.id,
+			// 		newTodo,
+			// 		editTodo.completed,
+			// 		editTodo.important,
+			// 		editTodo.category,
+			// 		editTodo.date
+			// 	);
+			// }
 		}
-	}
+
+
+
 	};
+
+
+
+
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -106,7 +116,15 @@ function TodoList({
 					<p>Choose a category:</p>
 					<div>
 						{categories.map((cat, index) => (
-							<label key={index}>
+							<label
+								key={index}
+								style={{
+									backgroundColor:
+										cat.value === category
+											? cat.backgroundColor
+											: null,
+								}}
+							>
 								<input
 									type="radio"
 									value={cat.value}
@@ -115,7 +133,8 @@ function TodoList({
 									}
 									onChange={() => setCategory(cat.value)}
 								/>
-								{cat.label}:
+								{cat.label}
+								{cat.icon}
 							</label>
 						))}
 					</div>
@@ -138,7 +157,7 @@ function TodoList({
 				Pick a date placeholder:
 				
 			</button> */}
-		</form>
+		</form >
 	);
 }
 
