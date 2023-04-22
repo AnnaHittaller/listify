@@ -23,6 +23,7 @@
   overflow: hidden;
 }
 
-input:focus, button:focus {
+input:focus,
+button:focus {
   outline: none;
 }
